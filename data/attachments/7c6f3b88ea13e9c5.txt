@@ -1,0 +1,2 @@
+INFO     APIClient:api_client.py:40 POST http://127.0.0.1:8000/api/v1/ai/style-transfer | Headers: None | Payload: {'image_id': 'IMG-6472bc3c', 'style': 'anime_3d', 'simulate_weak_network': False}
+INFO     APIClient:api_client.py:42 Response [200]: {"code":200,"data":{"task_id":"AI-e1f68b7b","image_id":"IMG-6472bc3c","style":"anime_3d","output_url":"https://example.comIMG-6472bc3c_anime_3d.jpg","quality_score":0.909,"latency_ms":201.5}}

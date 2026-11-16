@@ -1,0 +1,2 @@
+INFO     APIClient:api_client.py:40 POST http://127.0.0.1:8000/api/v1/ai/style-transfer | Headers: None | Payload: {'image_id': 'IMG-0b642cba', 'style': 'cyberpunk', 'simulate_weak_network': True}
+INFO     APIClient:api_client.py:42 Response [200]: {"code":200,"data":{"task_id":"AI-2ec03c9c","image_id":"IMG-0b642cba","style":"cyberpunk","output_url":"https://example.comIMG-0b642cba_cyberpunk.jpg","quality_score":0.915,"latency_ms":2293.64}}

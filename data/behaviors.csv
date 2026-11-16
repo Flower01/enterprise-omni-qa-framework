@@ -1,0 +1,6 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","Global Payment & Settlement","0","Cross-Border Checkout & Daily Cutoff","1","0","Cross-timezone daily cutoff boundary (Paris UTC+1 vs Shanghai UTC+8)","0"
+"0","Global Payment & Settlement","0","Cross-Border Checkout & Daily Cutoff","3","0","Multi-currency FX calculation and settlement","0"
+"0","Global Payment & Settlement","0","Cross-Border Checkout & Daily Cutoff","3","0","","0"
+"0","AI Image Generation","0","Style Transfer & Weak Network Resilience","4","0","","0"
+"0","Global Payment & Settlement","0","Cross-Border Checkout & Daily Cutoff","1","0","Idempotency protection against duplicate network retries","0"

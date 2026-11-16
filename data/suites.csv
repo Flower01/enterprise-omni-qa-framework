@@ -1,0 +1,18 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+        核心边界场景：
+        UTC 时间 2026-05-10T18:30:00Z
+        - 巴黎时间 (UTC+2 夏令时) 为 2026-05-10 20:30 -> 账单日应归属 2026-05-10
+        - 北京时间 (UTC+8) 为 2026-05-11 02:30 -> 总部清结算日切应归属 2026-05-11
+        ","11","test_cross_timezone_billing_cutoff","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证多币种实时汇率换算与清结算金额精度","3","test_fx_settlement_precision[USD-CNY-50.5-363.6]","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证海外多语言环境下支付结果提示文案的本地化准确性","3","test_localization_response_messages[zh-CN]","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证弱网高延迟场景下接口的优雅降级与输出完整性（允许放宽延迟阈值至 3000ms）","2297","test_ai_generation_under_weak_network","testcases.ai_feature","2026-11-16","passed","2026-11-16","TestAIGeneration","test_ai_generation","",""
+"验证海外多语言环境下支付结果提示文案的本地化准确性","3","test_localization_response_messages[fr-FR]","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证弱网环境下客户端重复提交相同幂等 Key 时，服务端精准拦截防重复扣款","7","test_payment_idempotency_protection","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证正常网络下多风格 AI 图像生成的延迟 SLA (<1000ms) 与质量分数阈值","205","test_ai_style_generation_sla_and_quality[anime_3d]","testcases.ai_feature","2026-11-16","passed","2026-11-16","TestAIGeneration","test_ai_generation","",""
+"验证正常网络下多风格 AI 图像生成的延迟 SLA (<1000ms) 与质量分数阈值","275","test_ai_style_generation_sla_and_quality[oil_painting]","testcases.ai_feature","2026-11-16","passed","2026-11-16","TestAIGeneration","test_ai_generation","",""
+"验证海外多语言环境下支付结果提示文案的本地化准确性","3","test_localization_response_messages[en-US]","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证多币种实时汇率换算与清结算金额精度","14","test_fx_settlement_precision[EUR-CNY-100.0-785.0]","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
+"验证正常网络下多风格 AI 图像生成的延迟 SLA (<1000ms) 与质量分数阈值","279","test_ai_style_generation_sla_and_quality[cyberpunk]","testcases.ai_feature","2026-11-16","passed","2026-11-16","TestAIGeneration","test_ai_generation","",""
+"验证多币种实时汇率换算与清结算金额精度","5","test_fx_settlement_precision[EUR-USD-200.0-218.0]","testcases.api_payment","2026-11-16","passed","2026-11-16","TestCrossBorderPayment","test_cross_border_payment","",""
