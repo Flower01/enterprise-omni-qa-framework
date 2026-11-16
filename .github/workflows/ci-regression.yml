@@ -28,9 +28,17 @@ jobs:
 
       - name: Start Mock SUT Server in background
         run: |
-          nohup uvicorn mock_server.app:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
-          sleep 3
-          curl -f http://127.0.0
+          PYTHONPATH=. uvicorn mock_server.app:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
+          for i in {1..10}; do
+            if curl -s http://127.0.0 > /dev/null; then
+              echo "Mock SUT Server is up and healthy!"
+              exit 0
+            fi
+            echo "Waiting for Mock SUT Server ($i/10)..."
+            sleep 1
+          done
+          cat server.log
+          exit 1
 
       - name: Run Full Pytest Suite (Smoke, Payment, i18n, AI Eval)
         env:
