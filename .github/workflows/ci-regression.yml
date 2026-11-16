@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+
 permissions:
   contents: write
 
@@ -28,7 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Full Pytest Suite (Auto-managed SUT, Smoke, Payment, i18n, AI Eval)
+      - name: Run Full Pytest Suite
         env:
           PYTHONPATH: .
           TEST_ENV: local
@@ -43,6 +44,7 @@ jobs:
           path: |
             report.html
             allure-results/
+
       - name: Get Allure history
         uses: actions/checkout@v4
         if: always()
@@ -51,18 +53,20 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Generate Allure HTML Report
+      - name: Generate Allure HTML Report (Native CLI)
         if: always()
-        uses: simple-elf/allure-report-action@v1.7
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
-          keep_reports: 10
+        run: |
+          mkdir -p allure-report
+          if [ -d "gh-pages/history" ]; then
+            cp -r gh-pages/history allure-results/history
+          fi
+          curl -sSL https://github.com -o allure.tgz
+          tar -zxf allure.tgz
+          ./allure-2.30.0/bin/allure generate allure-results -o allure-report --clean
 
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-history
-
+          publish_dir: allure-report
