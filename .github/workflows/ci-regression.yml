@@ -26,21 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Start Mock SUT Server in background
-        run: |
-          PYTHONPATH=. uvicorn mock_server.app:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
-          for i in {1..30}; do
-            if python -c "import urllib.request; urllib.request.urlopen('http://127.0.0')" > /dev/null 2>&1; then
-              echo "Mock SUT Server is up and healthy after ${i}s!"
-              exit 0
-            fi
-            echo "Waiting for Mock SUT Server ($i/30)..."
-            sleep 1
-          done
-          cat server.log
-          exit 1
-
-      - name: Run Full Pytest Suite (Smoke, Payment, i18n, AI Eval)
+      - name: Run Full Pytest Suite (Auto-managed SUT, Smoke, Payment, i18n, AI Eval)
         env:
           PYTHONPATH: .
           TEST_ENV: local
