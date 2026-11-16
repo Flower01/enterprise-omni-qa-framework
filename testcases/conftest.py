@@ -12,7 +12,7 @@ def start_mock_sut_server():
     """在测试会话开始前自动拉起 FastAPI 模拟后端，测试结束后自动清理进程"""
     # 先探测外部是否已经手动启动了服务（兼容 Docker Compose 或本地手动启动）
     try:
-        urllib.request.urlopen("http://127.0.0", timeout=1)
+        urllib.request.urlopen("http://127.0.0/health", timeout=1)
         yield
         return
     except Exception:
@@ -28,7 +28,7 @@ def start_mock_sut_server():
     # 轮询等待服务就绪（最长 30 秒）
     for _ in range(30):
         try:
-            urllib.request.urlopen("http://127.0.0", timeout=1)
+            urllib.request.urlopen("http://127.0.0/health", timeout=1)
             break
         except Exception:
             time.sleep(1)
