@@ -1,0 +1,49 @@
+name: Omni-QA Automated Regression Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  api-and-ai-regression:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Start Mock SUT Server in background
+        run: |
+          nohup uvicorn mock_server.app:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
+          sleep 3
+          curl -f http://127.0.0
+
+      - name: Run Full Pytest Suite (Smoke, Payment, i18n, AI Eval)
+        env:
+          PYTHONPATH: .
+          TEST_ENV: local
+        run: |
+          pytest -v --html=report.html --self-contained-html --alluredir=./allure-results
+
+      - name: Upload Test Reports as Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-execution-reports
+          path: |
+            report.html
+            allure-results/

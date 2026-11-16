@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  mock-service:
+    build: .
+    container_name: omni-qa-mock-sut
+    command: uvicorn mock_server.app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  test-runner:
+    build: .
+    container_name: omni-qa-test-runner
+    depends_on:
+      mock-service:
+        condition: service_healthy
+    environment:
+      - TEST_ENV=docker
+      - BASE_URL=http://mock-service:8000
+    volumes:
+      - ./allure-results:/app/allure-results
+    command: pytest -v --alluredir=/app/allure-results

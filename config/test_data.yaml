@@ -1,0 +1,15 @@
+i18n_messages:
+  fr-FR:
+    payment_success: "Paiement effectué avec succès"
+    insufficient_funds: "Solde insuffisant"
+  en-US:
+    payment_success: "Payment completed successfully"
+    insufficient_funds: "Insufficient funds"
+  zh-CN:
+    payment_success: "支付成功"
+    insufficient_funds: "余额不足"
+
+ai_styles:
+  - "cyberpunk"
+  - "oil_painting"
+  - "anime_3d"

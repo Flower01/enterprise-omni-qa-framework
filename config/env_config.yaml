@@ -1,0 +1,17 @@
+default:
+  base_url: "http://127.0.0.1:8000"
+  timeout: 10
+  max_retries: 3
+
+environments:
+  local:
+    base_url: "http://127.0.0.1:8000"
+    default_timezone: "Europe/Paris"
+  docker:
+    base_url: "http://mock-service:8000"
+    default_timezone: "Europe/Paris"
+
+exchange_rates:
+  EUR_TO_CNY: 7.85
+  USD_TO_CNY: 7.20
+  EUR_TO_USD: 1.09
